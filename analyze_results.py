@@ -28,6 +28,18 @@ def compare_in_out_distribution(in_distribution_results, out_distribution_result
         plt.legend()
         plt.show()
 
+def generate_insights(results):
+    insights = {}
+    for metric, values in results.items():
+        before_avg = np.mean(values['Before Unlearning'])
+        after_avg = np.mean(values['After Unlearning'])
+        insights[metric] = {
+            'Before Unlearning': before_avg,
+            'After Unlearning': after_avg,
+            'Difference': after_avg - before_avg
+        }
+    return insights
+
 if __name__ == "__main__":
     # Example results dictionary
     results = {
@@ -73,3 +85,7 @@ if __name__ == "__main__":
     }
 
     compare_in_out_distribution(in_distribution_results, out_distribution_results)
+
+    insights = generate_insights(results)
+    for metric, insight in insights.items():
+        print(f"{metric.capitalize()} - Before: {insight['Before Unlearning']}, After: {insight['After Unlearning']}, Difference: {insight['Difference']}")

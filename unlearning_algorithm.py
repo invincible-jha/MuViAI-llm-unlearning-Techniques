@@ -66,7 +66,7 @@ class LLMUnlearning:
                 loss.backward()
                 optimizer.step()
 
-    def gradient_descent_unlearning(self, data_to_unlearn, learning_rate=1e-5):
+    def selective_unlearning(self, data_to_unlearn, learning_rate=1e-5):
         optimizer = optim.AdamW(self.model.parameters(), lr=learning_rate)
         self.model.train()
         for data in data_to_unlearn:
@@ -77,7 +77,3 @@ class LLMUnlearning:
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
-
-    def data_augmentation(self, augmented_data):
-        augmented_dataloader = torch.utils.data.DataLoader(augmented_data, batch_size=32, shuffle=True)
-        self.fine_tune(augmented_dataloader)

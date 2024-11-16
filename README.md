@@ -63,3 +63,36 @@ The results of the unlearning process, including any improvements or changes in 
 ## Conclusion
 
 This project provides a comprehensive approach to LLM unlearning, implementing and evaluating various techniques to reduce the influence of unwanted data on pre-trained language models. The automation scripts and user interface make it easy to apply the unlearning process and analyze the results, providing valuable insights into the effectiveness of different unlearning algorithms.
+
+## Instructions for Using the User Interface and Running the Unlearning Script
+
+### User Interface
+
+1. **Launch the Interface**: Run the `user_interface.py` script to launch the user-friendly interface.
+2. **Input Data**: Enter the data you want the model to unlearn in the provided text field.
+3. **Unlearn Data**: Click the "Unlearn" button to initiate the unlearning process.
+4. **Real-time Feedback**: The interface will provide real-time feedback on the progress and results of the unlearning process.
+
+### Running the Unlearning Script
+
+1. **Load Data**: Ensure your dataset is prepared and cleaned, excluding the data to be unlearned.
+2. **Run the Script**: Execute the `unlearning_script.py` script to automate the unlearning process.
+3. **Save the Model**: The script will save the updated model after the unlearning process is complete.
+4. **Evaluate the Model**: The script will also evaluate the model's performance using the defined evaluation metrics and print the results.
+
+## Examples and Visual Aids
+
+### Example of Unlearning Process
+
+1. **Data Preparation**: Load and preprocess the dataset, ensuring the data to be unlearned is excluded.
+2. **Algorithm Implementation**: Implement the unlearning algorithms, such as fine-tuning and gradient descent unlearning.
+3. **Automation**: Create scripts to automate the unlearning process and test them on a small dataset.
+4. **Evaluation**: Define and calculate evaluation metrics to measure the effectiveness of the unlearning process.
+5. **Analysis**: Analyze and visualize the results to provide insights into the strengths and weaknesses of the unlearning algorithms.
+
+### Visual Aids
+
+- **Plots and Charts**: Use the `analyze_results.py` script to generate plots and charts comparing the model's performance before and after unlearning.
+- **Real-time Feedback**: The user interface provides real-time feedback on the progress and results of the unlearning process.
+
+By following these instructions and utilizing the provided scripts and user interface, you can effectively apply the unlearning process to your pre-trained language models and analyze the results to gain valuable insights.
