@@ -16,6 +16,18 @@ def analyze_results(results):
     for metric in metrics:
         plot_metric(results[metric], metric.capitalize())
 
+def compare_in_out_distribution(in_distribution_results, out_distribution_results):
+    metrics = ['accuracy', 'precision', 'recall', 'f1_score', 'loss']
+    for metric in metrics:
+        plt.figure()
+        plt.plot(in_distribution_results[metric], label='In-Distribution')
+        plt.plot(out_distribution_results[metric], label='Out-Distribution')
+        plt.xlabel('Epochs')
+        plt.ylabel(metric.capitalize())
+        plt.title(f'In-Distribution vs Out-Distribution {metric.capitalize()}')
+        plt.legend()
+        plt.show()
+
 if __name__ == "__main__":
     # Example results dictionary
     results = {
@@ -42,3 +54,22 @@ if __name__ == "__main__":
     }
 
     analyze_results(results)
+
+    # Example in-distribution and out-distribution results
+    in_distribution_results = {
+        'accuracy': [0.85, 0.86, 0.87],
+        'precision': [0.80, 0.81, 0.82],
+        'recall': [0.75, 0.76, 0.77],
+        'f1_score': [0.77, 0.78, 0.79],
+        'loss': [0.40, 0.38, 0.36]
+    }
+
+    out_distribution_results = {
+        'accuracy': [0.83, 0.84, 0.85],
+        'precision': [0.78, 0.79, 0.80],
+        'recall': [0.73, 0.74, 0.75],
+        'f1_score': [0.75, 0.76, 0.77],
+        'loss': [0.42, 0.40, 0.38]
+    }
+
+    compare_in_out_distribution(in_distribution_results, out_distribution_results)

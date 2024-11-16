@@ -1,6 +1,7 @@
 import torch
 from torch.utils.data import DataLoader
 from unlearning_algorithm import LLMUnlearning
+from evaluation_metrics import calculate_accuracy, calculate_precision, calculate_recall, calculate_f1_score, calculate_loss
 
 def load_data(file_path):
     # Load your dataset here
@@ -39,6 +40,22 @@ def main():
 
     # Save the unlearned model
     unlearning.model.save_pretrained("path/to/save/unlearned_model")
+
+    # Evaluate the model
+    y_true = [data['labels'] for data in train_data]
+    y_pred = [unlearning.model(**unlearning.tokenizer(data['text'], return_tensors='pt', padding=True, truncation=True)).logits.argmax(dim=1).item() for data in train_data]
+
+    accuracy = calculate_accuracy(y_true, y_pred)
+    precision = calculate_precision(y_true, y_pred)
+    recall = calculate_recall(y_true, y_pred)
+    f1_score = calculate_f1_score(y_true, y_pred)
+    loss = calculate_loss(y_true, y_pred)
+
+    print(f"Accuracy: {accuracy}")
+    print(f"Precision: {precision}")
+    print(f"Recall: {recall}")
+    print(f"F1 Score: {f1_score}")
+    print(f"Loss: {loss}")
 
 if __name__ == "__main__":
     main()
